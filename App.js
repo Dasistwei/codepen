@@ -1,11 +1,31 @@
 import '../index.css';
 import Editor from './Editor';
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
-const [html, setHtml]=useState('')
-const [css, setCss]=useState('')
-const [javascript, setJavascript]=useState('')
+  const [html, setHtml]=useState('')
+  const [css, setCss]=useState('')
+  const [javascript, setJavascript]=useState('')
+  const [ srcDoc, setSrcDoc ]=useState('')
+
+  useEffect(()=>{
+    const timeOut = setTimeout(() => {
+      setSrcDoc(
+        `
+          <html>
+            <style>${css}</style>
+            <body>
+              ${html}
+            <script>${javascript}</script>
+            </body>
+          </html>`        
+      )
+      
+    }, 1000);
+    
+    return ()=>clearTimeout(timeOut)
+  },[html, css, javascript])
+  
   return (
   <div className="App">
     <div className="coding-area">
@@ -24,22 +44,12 @@ const [javascript, setJavascript]=useState('')
         value = {javascript}
         onChange={setJavascript}
         />
-      {/* <Editor/>
-      <Editor/> */}
     </div>
     <div className="show-board">
       <iframe 
         title='output'
          sandbox='allow-scripts' 
-         srcDoc={
-          `<html>
-            <style>${css}</style>
-            <body>
-              ${html}
-            <script>${javascript}</script>
-            </body>
-          </html>`
-          }
+         srcDoc={srcDoc}
          style= {{
           border: 'none',
           width: '100%',
