@@ -9,7 +9,7 @@ import 'codemirror/mode/javascript/javascript'
 
 export default function Editor({languageName, value, onChange}) {
   return (
-    <div className="editor-container">
+  <div className="editor-container">
     <div className="editor-header">
       {languageName}
       <button className="editor-collapes">O/C</button>
@@ -17,9 +17,7 @@ export default function Editor({languageName, value, onChange}) {
 
     <EditorArea
       onBeforeChange={(editor, data, value)=>{
-        // console.log( value)
         onChange(value)
-        // console.log(html, )
         }}
         value={value}
       options={{

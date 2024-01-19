@@ -7,9 +7,9 @@ const [html, setHtml]=useState('')
 const [css, setCss]=useState('')
 const [javascript, setJavascript]=useState('')
   return (
-    <div className="App">
+  <div className="App">
     <div className="coding-area">
-      <Editor 
+      <Editor
         languageName = "html"
         value = {html}
         onChange={setHtml}
@@ -44,11 +44,11 @@ const [javascript, setJavascript]=useState('')
           border: 'none',
           width: '100%',
           height: '100%',
-          background: 'gray'
+          background: 'white'
           }}
         />
     </div>
-    </div>
+  </div>
   );
 }
 
